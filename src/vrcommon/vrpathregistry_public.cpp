@@ -60,7 +60,7 @@ static std::string GetAppSettingsPath()
 		NSString *resolvedPath = [paths objectAtIndex:0];
 		resolvedPath = [resolvedPath stringByAppendingPathComponent: @"OpenVR"];
 		
-		if ( ![[NSFileManager new] createDirectoryAtPath: resolvedPath withIntermediateDirectories:YES attributes:nil error:nil] )
+		if ( ![[NSFileManager defaultManager] createDirectoryAtPath: resolvedPath withIntermediateDirectories:YES attributes:nil error:nil] )
 		{
 			return "";
 		}
@@ -402,7 +402,7 @@ bool CVRPathRegistry_Public::GetPaths( std::string *psRuntimePath, std::string *
 
 	if ( nCountEnvironmentVariables == 3 )
 	{
-		// all three environment variables where set, so we don't need the physical file
+		// all three environment variables were set, so we don't need the physical file
 		return true;
 	}
 

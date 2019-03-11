@@ -13,6 +13,9 @@ std::string Path_GetWorkingDirectory();
 /** Sets the path of the current working directory. Returns true if this was successful. */
 bool Path_SetWorkingDirectory( const std::string & sPath );
 
+/** Gets the path to a temporary directory. */
+std::string Path_GetTemporaryDirectory();
+
 /** returns the path (including filename) of the current shared lib or DLL */
 std::string Path_GetThisModulePath();
 
@@ -35,7 +38,7 @@ std::string Path_GetExtension( const std::string & sPath );
 bool Path_IsAbsolute( const std::string & sPath );
 
 /** Makes an absolute path from a relative path and a base path */
-std::string Path_MakeAbsolute( const std::string & sRelativePath, const std::string & sBasePath, char slash = 0 );
+std::string Path_MakeAbsolute( const std::string & sRelativePath, const std::string & sBasePath );
 
 /** Fixes the directory separators for the current platform.
 * If slash is unspecified the native path separator of the current platform
@@ -96,6 +99,9 @@ std::string Path_UrlToFilePath( const std::string & sFileUrl );
 
 /** Returns the root of the directory the system wants us to store user documents in */
 std::string GetUserDocumentsPath();
+
+/** deletes / unlinks a single file */
+bool Path_UnlinkFile( const std::string &strFilename );
 
 #ifndef MAX_UNICODE_PATH
 	#define MAX_UNICODE_PATH 32767
