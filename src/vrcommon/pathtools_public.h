@@ -67,6 +67,10 @@ std::string Path_Join(
 * will be used. */
 std::string Path_Compact( const std::string & sRawPath, char slash = 0 );
 
+/** Returns true if these two paths are the same without respect for internal . or ..
+* sequences, slash type, or case (on case-insensitive platforms). */
+bool Path_IsSamePath( const std::string & sPath1, const std::string & sPath2 );
+
 //** Removed trailing slashes */
 std::string Path_RemoveTrailingSlash( const std::string & sRawPath, char slash = 0 );
 
@@ -82,6 +86,9 @@ bool Path_Exists( const std::string & sPath );
 /** Helper functions to find parent directories or subdirectories of parent directories */
 std::string Path_FindParentDirectoryRecursively( const std::string &strStartDirectory, const std::string &strDirectoryName );
 std::string Path_FindParentSubDirectoryRecursively( const std::string &strStartDirectory, const std::string &strDirectoryName );
+
+/** Make a text file writable. */
+bool Path_MakeWritable( const std::string &strFilename );
 
 /** Path operations to read or write text/binary files */
 unsigned char * Path_ReadBinaryFile( const std::string &strFilename, int *pSize );
@@ -129,6 +136,10 @@ bool Path_UnlinkFile( const std::string &strFilename );
 #define PROGRAM_EXT ""
 #if defined( LINUX32 )
 #define PLATSUBDIR	"linux32"
+#elif defined( ANDROIDARM64 )
+#define PLATSUBDIR	"androidarm64" 
+#elif defined( LINUXARM64 )
+#define PLATSUBDIR	"linuxarm64" 
 #else
 #define PLATSUBDIR	"linux64"
 #endif
